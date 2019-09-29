@@ -86,7 +86,8 @@ public class BankClientDAO {
             Long clSum = result.getLong("money");
             result.close();
             stmt.close();
-            return (clSum.compareTo(expectedSum) >= 0);
+            System.out.println("У отправителя деньги есть!!!!");
+            return (clSum >= expectedSum);
         } else {
             System.out.println("У отправителя мало денег!");
             result.close();

@@ -13,6 +13,7 @@ import java.util.Map;
 public class ResultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=utf-8");
         String result = req.getParameter("result");
         Map<String, Object> pageVariables = createPageVariablesMap(req);
         if (result.equals("successAdd")) {

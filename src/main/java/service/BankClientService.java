@@ -61,13 +61,15 @@ public class BankClientService {
         }
     }
 
-    public boolean sendMoneyToClient(BankClient sender, String password, String name, Long value) throws SQLException {
+    public boolean sendMoneyToClient(BankClient sender, String nameTo, Long value) throws SQLException {
         BankClientDAO dao = getBankClientDAO();
         String senderName = sender.getName();
         String senderPass = sender.getPassword();
-        if ((dao.isClientHasSum(senderName,value) & (dao.validateClient(senderName,password)))){
-            dao.updateClientsMoney(senderName,senderPass,value*(-1));
-            dao.updateClientsMoney(name,dao.getClientByName(name).getPassword(),value);
+        System.out.println("пытаемся перевести бабки");
+        if ((dao.isClientHasSum(senderName,value))){
+
+            dao.updateClientsMoney(senderName,senderPass,-value);
+            dao.updateClientsMoney(nameTo,dao.getClientByName(nameTo).getPassword(),value);
             return true;
         } else {
             return false;
